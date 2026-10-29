@@ -19,10 +19,20 @@ base = "app"
 command = "npm run build"
 publish = "dist"
 
-# Vite 8 要求 Node ^20.19 || >=22.12，Svelte 插件要求 >=22.12。
-# Netlify 默认版本可能偏低，这里显式钉住（当前 LTS）。
+# ── Node 版本 ──
+#
+# 依赖树里有一条**硬约束**决定了下限：html2canvas-pro@2.5.2 要求 node >=24.0.0
+# （它被 Share.svelte 用于生成分享图，是运行时依赖，不只是构建期）。
+# 另外 postcss-calc@11.2.3（cssnano 的传递依赖）要求 ^22.22.3 || ^24.15。
+#
+# 所以钉在 22 是不够的：本地之所以能跑，只是因为 npm 的 engine-strict 默认
+# false，EBADENGINE 只是警告。换个环境（或将来 Netlify 打开严格校验）就会挂。
+# 这里直接选 24 —— 两个约束都满足，且是当前 LTS。
+#
+# 写主版本号 "24" 即可，Netlify 会解析为 24.x 的最新版（官方文档：
+# "set a major version, such as the number 24 for the latest version of 24.x"）。
 [build.environment]
-NODE_VERSION = "22"
+NODE_VERSION = "24"
 
 # ── SPA 回退 ──
 #

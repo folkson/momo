@@ -356,7 +356,7 @@ npm test
    | Base directory | `app` | 前端在子目录；根目录是另一套 Node 工具 |
    | Build command | `npm run build` | |
    | Publish directory | `dist` | ⚠️ 相对 `base`，实际部署 `app/dist` |
-   | Node | `22` | Vite 8 要求 `>=22.12` |
+   | Node | `24` | 见下方「Node 版本为什么是 24」 |
 
 3. 点 **Deploy**
 
@@ -366,7 +366,20 @@ npm test
 
 **一个容易踩的路径陷阱**：`publish` 是相对 `base` 解析的。`base = "app"` + `publish = "dist"` 才是 `app/dist`；写成 `publish = "app/dist"` 会变成 `app/app/dist`，构建报 `publish directory not found`。
 
-### 关于 SPA 回退（如实说明）
+### Node 版本为什么是 24
+
+依赖树里有一条硬约束决定了下限：**`html2canvas-pro@2.5.2` 要求 `node >=24.0.0`**。它被 `Share.svelte` 用来生成分享图，是真正的运行时依赖，不是构建期工具。另外 `postcss-calc@11.2.3`（`cssnano` 的传递依赖）要求 `^22.22.3 || ^24.15`。
+
+所以钉 22 是不够的。本地之所以能构建通过，只是因为 npm 的 `engine-strict` 默认是 `false` —— `EBADENGINE` 只是警告，不阻断。换个环境会挂。`netlify.toml` 和 `app/package.json` 的 `engines` 都写 24，两处保持一致。
+
+`NODE_VERSION = "24"` 写主版本号即可，Netlify 会取 24.x 的最新版。
+
+### lockfile
+
+`app/package-lock.json` 已入库。有这个文件，Netlify 会走 `npm ci` 而不是 `npm install`，装出来的版本和本地逐字节一致；没有它则会按 `^` 范围重新解析，可能拉到将来发布的不兼容版本。
+
+⚠️ 副作用：本机若是 Node 22，`npm install` 会报 `momo-app requires node >=24` 的警告。这是预期行为，本地用 Node 22 仍可开发构建，只是会有这条提示。
+
 
 `netlify.toml` 里有一条 `/* → /index.html 200`，但**这个应用当前用不上它**：页面切换靠 Svelte store 在内存里完成，URL 从头到尾不变，`index.html` 只在首次加载时请求一次，没有路径路由。
 

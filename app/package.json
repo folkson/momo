@@ -1,6 +1,9 @@
 {
   "name": "momo-app",
   "version": "0.0.0",
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite",
     "build": "vite build",
