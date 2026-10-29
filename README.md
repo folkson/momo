@@ -202,6 +202,18 @@ node scripts/real-gitea-check.mjs
 
 > ⚠️ 在 Windows 上跑本地 Gitea 时，每次写请求会莫名慢 ~28 秒。原因不是代码：Gitea 要派生 `git` 子进程做 attr-check，被沙箱拦掉后等到超时。Linux / Docker 下没有这个现象。
 
+### 改完代码怎么发布
+
+`scripts/push-via-api.mjs` 走 **GitHub Git Data API** 推送，用在你连不上 `github.com`（`git push` 报 `CONNECT tunnel failed`）但 `api.github.com` 可达的环境：
+
+```bash
+GITHUB_TOKEN=<你的 token> GITHUB_REPO=<owner>/<repo> node scripts/push-via-api.mjs
+```
+
+它读的是**本地 git HEAD**（不是工作区），所以推上去的内容与本地提交逐字节一致，并会逐个校验 `POST /git/blobs` 返回的 sha 是否与本地 blob sha 相同。
+
+> 这里有个和 Gitea 对称的坑：GitHub 的空仓库上 `POST /git/blobs` 会返回 **409 "Git Repository is empty."** —— git 对象库得先有提交才可用。所以脚本会先用 `PUT /contents/README.md` 造一个引导提交。和前面「Gitea 空仓库 `POST /branches` → 404」是同一类问题：空仓库那个状态各家处理都不一样。
+
 ### 改造四：配置 UI
 
 `SyncSetup.svelte` 新增"第 0 步：选择代码平台"，支持 GitHub / Gitea / Forgejo 三个按钮。选后两者时多出一个 **API 地址**输入框（会自动补 `/api/v1`）。
