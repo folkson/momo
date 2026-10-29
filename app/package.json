@@ -1,0 +1,35 @@
+{
+  "name": "momo-app",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "@rollup/plugin-replace": "^6.0.3",
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "@tailwindcss/postcss": "^4.3.3",
+    "autoprefixer": "^10.6.1",
+    "cross-env": "^10.1.0",
+    "cssnano": "^9.8.0",
+    "postcss": "^8.5.30",
+    "postcss-load-config": "^6.0.1",
+    "svelte": "^5.57.2",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4",
+    "vite-plugin-pwa": "^2.0.0",
+    "workbox-window": "^7.4.1"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.23",
+    "html2canvas-pro": "^2.5.2",
+    "idb": "^8.0.4",
+    "js-base64": "^3.9.4",
+    "qrcode-generator": "^2.0.4",
+    "quill": "^2.0.3",
+    "remixicon": "^4.9.1",
+    "tailwindcss": "^4.3.3",
+    "wangeditor": "^4.7.15"
+  }
+}

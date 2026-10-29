@@ -1,0 +1,640 @@
+@import 'tailwindcss';
+
+@config '../tailwind.config.js';
+
+/* 主题色: 组件统一使用 primary-* 颜色, 由 <html data-theme> 切换具体色板 */
+@theme inline {
+    --color-primary-50: var(--primary-50);
+    --color-primary-100: var(--primary-100);
+    --color-primary-200: var(--primary-200);
+    --color-primary-300: var(--primary-300);
+    --color-primary-400: var(--primary-400);
+    --color-primary-500: var(--primary-500);
+    --color-primary-600: var(--primary-600);
+    --color-primary-700: var(--primary-700);
+    --color-primary-800: var(--primary-800);
+    --color-primary-900: var(--primary-900);
+    --color-primary-950: var(--primary-950);
+}
+
+/* 薄荷绿 */
+:root,
+[data-theme="green"] {
+    --primary-50: oklch(98.2% 0.018 155.826);
+    --primary-100: oklch(96.2% 0.044 156.743);
+    --primary-200: oklch(92.5% 0.084 155.995);
+    --primary-300: oklch(87.1% 0.15 154.449);
+    --primary-400: oklch(79.2% 0.209 151.711);
+    --primary-500: oklch(72.3% 0.219 149.579);
+    --primary-600: oklch(62.7% 0.194 149.214);
+    --primary-700: oklch(52.7% 0.154 150.069);
+    --primary-800: oklch(44.8% 0.119 151.328);
+    --primary-900: oklch(39.3% 0.095 152.535);
+    --primary-950: oklch(26.6% 0.065 152.934);
+}
+
+/* 青碧 */
+[data-theme="teal"] {
+    --primary-50: oklch(98.4% 0.014 180.72);
+    --primary-100: oklch(95.3% 0.051 180.801);
+    --primary-200: oklch(91% 0.096 180.426);
+    --primary-300: oklch(85.5% 0.138 181.071);
+    --primary-400: oklch(77.7% 0.152 181.912);
+    --primary-500: oklch(70.4% 0.14 182.503);
+    --primary-600: oklch(60% 0.118 184.704);
+    --primary-700: oklch(51.1% 0.096 186.391);
+    --primary-800: oklch(43.7% 0.078 188.216);
+    --primary-900: oklch(38.6% 0.063 188.416);
+    --primary-950: oklch(27.7% 0.046 192.524);
+}
+
+/* 海湾蓝 */
+[data-theme="blue"] {
+    --primary-50: oklch(97% 0.014 254.604);
+    --primary-100: oklch(93.2% 0.032 255.585);
+    --primary-200: oklch(88.2% 0.059 254.128);
+    --primary-300: oklch(80.9% 0.105 251.813);
+    --primary-400: oklch(70.7% 0.165 254.624);
+    --primary-500: oklch(62.3% 0.214 259.815);
+    --primary-600: oklch(54.6% 0.245 262.881);
+    --primary-700: oklch(48.8% 0.243 264.376);
+    --primary-800: oklch(42.4% 0.199 265.638);
+    --primary-900: oklch(37.9% 0.146 265.522);
+    --primary-950: oklch(28.2% 0.091 267.935);
+}
+
+/* 薰衣草紫 */
+[data-theme="violet"] {
+    --primary-50: oklch(96.9% 0.016 293.756);
+    --primary-100: oklch(94.3% 0.029 294.588);
+    --primary-200: oklch(89.4% 0.057 293.283);
+    --primary-300: oklch(81.1% 0.111 293.571);
+    --primary-400: oklch(70.2% 0.183 293.541);
+    --primary-500: oklch(60.6% 0.25 292.717);
+    --primary-600: oklch(54.1% 0.281 293.009);
+    --primary-700: oklch(49.1% 0.27 292.581);
+    --primary-800: oklch(43.2% 0.232 292.759);
+    --primary-900: oklch(38% 0.189 293.745);
+    --primary-950: oklch(28.3% 0.141 291.089);
+}
+
+/* 樱花粉 */
+[data-theme="rose"] {
+    --primary-50: oklch(96.9% 0.015 12.422);
+    --primary-100: oklch(94.1% 0.03 12.58);
+    --primary-200: oklch(89.2% 0.058 10.001);
+    --primary-300: oklch(81% 0.117 11.638);
+    --primary-400: oklch(71.2% 0.194 13.428);
+    --primary-500: oklch(64.5% 0.246 16.439);
+    --primary-600: oklch(58.6% 0.253 17.585);
+    --primary-700: oklch(51.4% 0.222 16.935);
+    --primary-800: oklch(45.5% 0.188 13.697);
+    --primary-900: oklch(41% 0.159 10.272);
+    --primary-950: oklch(27.1% 0.105 12.094);
+}
+
+/* 暖阳橙 */
+[data-theme="orange"] {
+    --primary-50: oklch(98% 0.016 73.684);
+    --primary-100: oklch(95.4% 0.038 75.164);
+    --primary-200: oklch(90.1% 0.076 70.697);
+    --primary-300: oklch(83.7% 0.128 66.29);
+    --primary-400: oklch(75% 0.183 55.934);
+    --primary-500: oklch(70.5% 0.213 47.604);
+    --primary-600: oklch(64.6% 0.222 41.116);
+    --primary-700: oklch(55.3% 0.195 38.402);
+    --primary-800: oklch(47% 0.157 37.304);
+    --primary-900: oklch(40.8% 0.123 38.172);
+    --primary-950: oklch(26.6% 0.079 36.259);
+}
+
+
+/* ==========================================================
+   设计系统 · 安静的纸
+   内容优先: 正文像纸上的墨迹, 颜色只用于有含义的地方(主操作, 当前项, 标签)
+   ========================================================== */
+
+/* 中性色: 画布(canvas) < 卡片(surface) < 次级面(surface-2), 文字三级(ink / ink-2 / ink-3), 细线(line) */
+:root,
+.light-scope {
+    --canvas: #f6f6f3;
+    --surface: #ffffff;
+    --surface-2: #f0f0ec;
+    --surface-3: #e7e7e2;
+    --line: rgb(28 25 23 / 0.08);
+    --line-strong: rgb(28 25 23 / 0.14);
+    --ink: #1d1f23;
+    --ink-2: #565b63;
+    --ink-3: #686d75;
+    --shadow-card: 0 1px 2px rgb(28 25 23 / 0.04);
+    --shadow-pop: 0 12px 32px -8px rgb(28 25 23 / 0.18), 0 2px 6px rgb(28 25 23 / 0.06);
+}
+
+.dark :where(:not(.light-scope, .light-scope *)),
+.dark {
+    --canvas: #0f1013;
+    --surface: #17191d;
+    --surface-2: #202328;
+    --surface-3: #2a2e34;
+    --line: rgb(255 255 255 / 0.07);
+    --line-strong: rgb(255 255 255 / 0.13);
+    --ink: #e7e8ea;
+    --ink-2: #a8adb5;
+    --ink-3: #868c95;
+    --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3);
+    --shadow-pop: 0 16px 40px -8px rgb(0 0 0 / 0.6), 0 2px 6px rgb(0 0 0 / 0.4);
+}
+
+@theme inline {
+    --color-canvas: var(--canvas);
+    --color-surface: var(--surface);
+    --color-surface-2: var(--surface-2);
+    --color-surface-3: var(--surface-3);
+    --color-line: var(--line);
+    --color-line-strong: var(--line-strong);
+    --color-ink: var(--ink);
+    --color-ink-2: var(--ink-2);
+    --color-ink-3: var(--ink-3);
+    --shadow-card: var(--shadow-card);
+    --shadow-pop: var(--shadow-pop);
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", sans-serif;
+}
+
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--line);
+    }
+
+    html,
+    body {
+        min-height: 100%;
+        height: 100%;
+        margin: 0;
+    }
+
+    body {
+        background: var(--canvas);
+        color: var(--ink);
+        font-family: var(--font-sans);
+        font-size: 14px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    ::selection {
+        background: color-mix(in oklab, var(--primary-400) 35%, transparent);
+    }
+
+    /* 细滚动条, 悬停时才明显 */
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: var(--surface-3) transparent;
+    }
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: var(--surface-3);
+        border-radius: 999px;
+        border: 2px solid transparent;
+        background-clip: content-box;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: var(--ink-3);
+    }
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+}
+
+/* 编辑器占位文字 */
+.ql-editor.ql-blank::before {
+    color: var(--ink-3) !important;
+    font-style: normal !important;
+    left: 0 !important;
+    right: 0 !important;
+}
+
+/* quill 2 默认隐藏 li 的列表符号, 为 getSemanticHTML 输出及旧版数据中的标准列表恢复样式 */
+.ql-editor ul {
+    padding-left: 1.5em;
+}
+.ql-editor ul > li:not([data-list]) {
+    list-style-type: disc;
+    padding-left: 0;
+}
+.ql-editor ol > li:not([data-list]) {
+    list-style-type: decimal;
+    padding-left: 0;
+}
+
+/* 笔记内容: 正常换行, 过长的链接/英文/数字也能在任意位置折行, 不会撑出卡片 */
+.neno-content {
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.75;
+    letter-spacing: 0.01em;
+}
+.neno-content p {
+    margin: 0;
+}
+.neno-content ul,
+.neno-content ol {
+    margin: 0.2em 0;
+    padding-left: 1.4em;
+}
+.neno-content ul {
+    list-style: disc;
+}
+.neno-content ol {
+    list-style: decimal;
+}
+.neno-content li::marker {
+    color: var(--ink-3);
+}
+/* 摘录(浏览器插件保存的网页文字, 编辑器中的引用) */
+.neno-content blockquote {
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.85em;
+    border-left: 2.5px solid color-mix(in oklab, var(--primary-500) 50%, transparent);
+    color: var(--ink-2);
+}
+/* 编辑器把引用中的空行保存为空的 blockquote, 保留一行的高度 */
+.neno-content blockquote:empty::before {
+    content: "\200b";
+}
+.neno-content strong {
+    font-weight: 600;
+}
+.neno-content a {
+    color: var(--primary-600);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--primary-500) 35%, transparent);
+    text-underline-offset: 3px;
+}
+.dark .neno-content a {
+    color: var(--primary-300);
+}
+.neno-content a:hover {
+    text-decoration-color: currentColor;
+}
+/* 外部链接后面的小箭头, 提示会在新窗口打开 */
+.neno-content a.neno-link::after {
+    content: "";
+    display: inline-block;
+    width: 0.72em;
+    height: 0.72em;
+    margin-left: 0.15em;
+    vertical-align: -0.02em;
+    background: currentColor;
+    opacity: 0.6;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 16L17 7M9 7h8v8'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 16L17 7M9 7h8v8'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.neno-content pre {
+    white-space: pre-wrap;
+    margin: 0.4em 0;
+    padding: 0.75em 1em;
+    border-radius: 8px;
+    background: var(--surface-2);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* 搜索命中的文字 */
+.neno-highlight {
+    background: color-mix(in oklab, #facc15 45%, transparent);
+    border-radius: 3px;
+    padding: 0 1px;
+}
+.dark .neno-highlight {
+    background: color-mix(in oklab, #facc15 30%, transparent);
+    color: var(--ink);
+}
+.neno-content img,
+.neno-content video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 标签: 主题色浅底小标签; 整体换到下一行, 只有比一行还长时才在标签内部折行 */
+.neno-tag {
+    display: inline-block;
+    max-width: 100%;
+    vertical-align: baseline;
+    overflow-wrap: anywhere;
+    margin: 0 0.15em;
+    padding: 0 0.45em;
+    border-radius: 6px;
+    background: var(--primary-50);
+    color: var(--primary-700);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.75;
+    cursor: pointer;
+    transition: background-color 150ms ease, color 150ms ease;
+}
+.neno-tag:hover {
+    background: var(--primary-100);
+}
+.dark .neno-tag {
+    background: color-mix(in oklab, var(--primary-500) 16%, transparent);
+    color: var(--primary-300);
+}
+.dark .neno-tag:hover {
+    background: color-mix(in oklab, var(--primary-500) 26%, transparent);
+}
+
+/* ---------- 微交互 ---------- */
+@layer base {
+    /* 颜色, 边框, 阴影的变化都平滑过渡(组件里写了 transition-* 的以组件为准) */
+    button,
+    a,
+    summary,
+    input,
+    select,
+    textarea,
+    [role="button"] {
+        transition-property: color, background-color, border-color, box-shadow, opacity, transform;
+        transition-duration: 150ms;
+        transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+    }
+
+    /* 按下反馈, 宽按钮缩放幅度更小 */
+    button,
+    [role="button"] {
+        --press-scale: 0.95;
+    }
+    button.w-full,
+    [role="button"].w-full {
+        --press-scale: 0.985;
+    }
+    button:not(:disabled):active,
+    [role="button"]:active {
+        transform: scale(var(--press-scale));
+    }
+}
+
+/* 切换主题/深色模式时颜色渐变, 只在切换的瞬间生效 */
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+    transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease, fill 300ms ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* 长笔记展开/收起时高度平滑变化 */
+.neno-fold {
+    transition: max-height 300ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* ---------- 组件 ---------- */
+@layer components {
+    .card {
+        @apply rounded-xl border border-line bg-surface shadow-card;
+    }
+
+    .btn {
+        @apply inline-flex h-9 shrink-0 cursor-pointer items-center justify-center gap-1.5 rounded-lg px-3.5 text-sm font-medium whitespace-nowrap select-none disabled:cursor-not-allowed disabled:opacity-50;
+    }
+    .btn-sm {
+        @apply h-8 gap-1 px-2.5 text-[13px];
+    }
+    .btn-primary {
+        @apply bg-primary-500 text-white shadow-xs hover:bg-primary-600 disabled:hover:bg-primary-500;
+    }
+    .btn-secondary {
+        @apply border border-line-strong bg-surface text-ink hover:bg-surface-2;
+    }
+    .btn-ghost {
+        @apply text-ink-2 hover:bg-surface-2 hover:text-ink;
+    }
+    .btn-destructive {
+        @apply bg-red-600 text-white shadow-xs hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600;
+    }
+    .btn-danger {
+        @apply text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-500/10;
+    }
+
+    .icon-btn {
+        @apply inline-flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-lg text-[17px] text-ink-3 hover:bg-surface-2 hover:text-ink;
+    }
+
+    .input {
+        @apply h-9 w-full rounded-lg border border-line-strong bg-surface px-3 text-sm text-ink outline-none placeholder:text-ink-3 focus:border-primary-400 focus:ring-3 focus:ring-primary-500/15;
+    }
+
+    .section-label {
+        @apply px-3 text-xs font-medium tracking-wide text-ink-3;
+    }
+
+    /* 侧边栏导航项与标签项 */
+    .nav-item {
+        @apply flex h-9 w-full cursor-pointer items-center gap-2.5 rounded-lg px-3 text-left text-sm text-ink-2 hover:bg-surface-2 hover:text-ink;
+    }
+    .nav-item > i {
+        @apply text-base text-ink-3;
+    }
+    .nav-item-active {
+        @apply bg-primary-500/10 font-medium text-primary-700 hover:bg-primary-500/15 hover:text-primary-700 dark:text-primary-300 dark:hover:text-primary-300;
+    }
+    .nav-item-active > i {
+        @apply text-primary-600 dark:text-primary-400;
+    }
+
+    /* 分段选择器 */
+    .segmented {
+        @apply inline-flex rounded-lg bg-surface-2 p-0.5;
+    }
+    .segmented > button {
+        @apply flex h-8 items-center gap-1.5 rounded-md px-3 text-[13px] text-ink-2 hover:text-ink;
+    }
+    .segmented > button[aria-checked="true"] {
+        @apply bg-surface text-ink shadow-xs dark:bg-surface-3;
+    }
+}
+
+/* 键盘操作时显示焦点 */
+:where(.btn, .icon-btn, .nav-item, .segmented > button):focus-visible {
+    outline: 2px solid var(--primary-400);
+    outline-offset: 2px;
+}
+
+/* ---------- 编辑器(覆盖 quill snow 主题) ---------- */
+.ql-container.ql-snow,
+.ql-toolbar.ql-snow {
+    border: none !important;
+    font-family: inherit;
+}
+.ql-toolbar.ql-snow {
+    padding: 0 !important;
+}
+.ql-container {
+    font-size: 15px;
+}
+.ql-editor {
+    min-height: 72px;
+    max-height: 50vh;
+    padding: 14px 16px 8px !important;
+    color: var(--ink);
+    line-height: 1.75 !important;
+}
+.ql-editor.ql-blank::before {
+    left: 16px !important;
+    right: 16px !important;
+}
+.neno-toolbar .editor-tool,
+.ql-toolbar.ql-snow .neno-toolbar .editor-tool {
+    float: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 8px;
+    color: var(--ink-3);
+    font-size: 16px;
+    cursor: pointer;
+}
+.neno-toolbar .editor-tool:hover {
+    background: var(--surface-2);
+    color: var(--ink);
+}
+.neno-toolbar .editor-tool.ql-active {
+    background: color-mix(in oklab, var(--primary-500) 12%, transparent);
+    color: var(--primary-600);
+}
+.dark .neno-toolbar .editor-tool.ql-active {
+    color: var(--primary-300);
+}
+/* 编辑器中的链接和引用与笔记展示保持一致 */
+.ql-editor a {
+    color: var(--primary-600);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--primary-500) 35%, transparent);
+    text-underline-offset: 3px;
+}
+.dark .ql-editor a {
+    color: var(--primary-300);
+}
+.ql-editor blockquote {
+    margin: 0;
+    padding: 0.1em 0 0.1em 0.85em;
+    border-left: 2.5px solid color-mix(in oklab, var(--primary-500) 50%, transparent);
+    color: var(--ink-2);
+}
+/* 编辑器中已经形成的 #标签, 由 lib/tagHighlight.js 标记, 配色与笔记中的标签一致 */
+::highlight(neno-tag) {
+    color: var(--primary-700);
+    background-color: var(--primary-50);
+}
+/* 部分浏览器的 ::highlight 不支持 color-mix, 深色模式直接使用色板中的深色 */
+.dark ::highlight(neno-tag) {
+    color: var(--primary-300);
+    background-color: var(--primary-950);
+}
+/* 编辑器的链接浮层 */
+.link-pop .link-url {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    max-width: 260px;
+    padding: 0 6px;
+    color: var(--primary-600);
+    line-height: 28px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.dark .link-pop .link-url {
+    color: var(--primary-300);
+}
+.link-pop .link-url:hover {
+    text-decoration: underline;
+}
+.link-pop .link-action {
+    height: 28px;
+    padding: 0 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.link-pop .link-action:not([class*="text-primary"]) {
+    color: var(--ink-2);
+}
+.link-pop .link-action:hover {
+    background: var(--surface-2);
+}
+
+/* 下拉菜单项 */
+@layer components {
+    .menu-item {
+        @apply flex h-8 w-full cursor-pointer items-center gap-2 rounded-md px-2.5 text-left text-ink-2 hover:bg-surface-2 hover:text-ink;
+    }
+    .menu-item > i {
+        @apply text-[15px] text-ink-3;
+    }
+    .menu-item-danger {
+        @apply text-red-600 hover:bg-red-50 hover:text-red-600 dark:text-red-400 dark:hover:bg-red-500/10 dark:hover:text-red-400;
+    }
+    .menu-item-danger > i {
+        @apply text-current;
+    }
+}
+
+/* 开关 */
+.switch {
+    appearance: none;
+    position: relative;
+    flex-shrink: 0;
+    width: 36px;
+    height: 20px;
+    border-radius: 999px;
+    background: var(--surface-3);
+    cursor: pointer;
+    transition: background-color 150ms ease;
+}
+.switch::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 999px;
+    background: #fff;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.2);
+    transition: transform 180ms cubic-bezier(0.2, 0, 0, 1);
+}
+.switch:checked {
+    background: var(--primary-500);
+}
+.switch:checked::before {
+    transform: translateX(16px);
+}
+.switch:focus-visible {
+    outline: 2px solid var(--primary-400);
+    outline-offset: 2px;
+}

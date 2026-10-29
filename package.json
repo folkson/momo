@@ -1,0 +1,15 @@
+{
+  "name": "momo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "让 neno 卡片笔记的后端支持 Gitea / Forgejo 等自建代码平台，并可推送至 memos",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "license": "MIT",
+  "dependencies": {}
+}
