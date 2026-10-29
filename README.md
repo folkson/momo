@@ -342,6 +342,62 @@ npm test
 
 ---
 
+## 部署到 Netlify
+
+`app/` 是纯静态 SPA，Netlify 可以直接托管。仓库根目录已有 `netlify.toml`，**不需要在 UI 里填任何构建配置**。
+
+### 一次性配置
+
+1. Netlify → **Add new project** → **Import an existing project** → 选 GitHub → 授权并选中 `folkson/momo`
+2. 构建配置会从 `netlify.toml` 自动读取，什么都不用改：
+
+   | 项 | 值 | 说明 |
+   |---|---|---|
+   | Base directory | `app` | 前端在子目录；根目录是另一套 Node 工具 |
+   | Build command | `npm run build` | |
+   | Publish directory | `dist` | ⚠️ 相对 `base`，实际部署 `app/dist` |
+   | Node | `22` | Vite 8 要求 `>=22.12` |
+
+3. 点 **Deploy**
+
+### 为什么 base 必须设成 app
+
+这个仓库不是一个纯前端项目：根目录还有一套独立的 Node 同步工具（`src/`、`test/`、`testkit/`）。Netlify 默认从仓库根装依赖、跑构建，那样会装错东西 —— 根 `package.json` 里连 vite 都没有。
+
+**一个容易踩的路径陷阱**：`publish` 是相对 `base` 解析的。`base = "app"` + `publish = "dist"` 才是 `app/dist`；写成 `publish = "app/dist"` 会变成 `app/app/dist`，构建报 `publish directory not found`。
+
+### 关于 SPA 回退（如实说明）
+
+`netlify.toml` 里有一条 `/* → /index.html 200`，但**这个应用当前用不上它**：页面切换靠 Svelte store 在内存里完成，URL 从头到尾不变，`index.html` 只在首次加载时请求一次，没有路径路由。
+
+留着它是为了以后改成真路由时不用再想，以及用户手输奇怪的 URL 时不至于看到 Netlify 的 404 页。
+
+关键在于**没有**加 `!`（force）后缀。Netlify 默认不 shadow 已存在的静态文件，所以这道 splat 不会吞掉 `/sw.js`、`/manifest.webmanifest`、`/assets/*`。如果加上 `!`，`sw.js` 会被 rewrite 成 `index.html`，Service Worker 直接废掉。
+
+### 缓存头
+
+Vite 给 `assets/` 下的文件带内容 hash，可以放心长缓存；但 `index.html`、`sw.js`、`manifest.webmanifest` 文件名固定，必须短缓存，否则用户会一直拿到旧版本。`netlify.toml` 里已经按这个原则分别设好了。
+
+### 部署后要做的
+
+打开站点，进设置页重新配置同步（Token、平台、仓库）。也可以点「分享」，把生成到 `#neno-config=...` 的链接/二维码拿到其他设备导入 —— 配置在 `#` 之后，不会随请求发到服务器。
+
+### 本地验证构建
+
+```bash
+cd app && npm run build && npx vite preview
+```
+
+### 用 Netlify CLI 部署（可选）
+
+```bash
+npm i -g netlify-cli
+netlify login
+netlify deploy --build --prod
+```
+
+---
+
 ## 已知限制
 
 | 限制 | 说明 |

@@ -8,12 +8,15 @@ const pwaOptions = {
     base: '/',
     includeAssets: ['favicon.svg'],
     manifest: {
-        name: 'NENO',
-        short_name: 'NENO',
+        name: 'momo',
+        short_name: 'momo',
         theme_color: '#f3f4f6',
+        // 图标保持相对路径（不要加前导斜杠）：构建后 neno.png 会被拷到
+        // dist 根目录，与 manifest.webmanifest 同级，相对解析即 /neno.png。
+        // 这样即便将来部署在子路径下（如 /momo/）也能正确解析。
         icons: [
             {
-                src: 'neno.png', // <== don't add slash, for testing
+                src: 'neno.png',
                 sizes: '512x512',
                 type: 'image/png',
             },
